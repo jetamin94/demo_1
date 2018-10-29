@@ -25,22 +25,19 @@ const initialState = {
 
 export default (state = initialState, actions) => {
   switch (actions.type) {
-    // state.push(actions.data);
     case ADD_ARTICLE:
       {
+        state.articles.push(actions.data)
         return {
-          ...state, articles: [
-            ...state.articles,
-            actions.data
-          ]
+          ...state
         }
       }
-    // case UPDATE_ARITCLE:
-    //   return { ...state, articles: actions.data }
-    // case REMOVE_ARTICLE:
-    //   return { ...state, articles: actions.data }
-    // case LIST_ARTICLES:
-    // return { articles: state.articles }
+    case UPDATE_ARITCLE:
+      return { ...state, articles: actions.data }
+    case REMOVE_ARTICLE:
+      return { ...state, articles: actions.data }
+    case LIST_ARTICLES:
+      return { articles: state.articles }
     default:
       return {
         ...state

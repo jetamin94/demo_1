@@ -10,7 +10,15 @@ export const addArticle = (data) => ({
   data,
 })
 
-
 export const listArticles = () => ({
   type: LIST_ARTICLES
+})
+
+export const removeArticle = () => ({
+  type: REMOVE_ARTICLE,
+})
+
+export const updateArticle = (data) => ({
+  type: UPDATE_ARITCLE,
+  data
 })

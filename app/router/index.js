@@ -11,6 +11,9 @@ export default MainStack = createStackNavigator(
     Modal: {
       screen: ModalScreen,
     },
+    Detail: {
+      screen: DetailScreen,
+    },
   },
   {
     initialRouteName: 'Home',

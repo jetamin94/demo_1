@@ -16,7 +16,6 @@ class HomeScreen extends React.Component {
     super(props);
     this.state = {
       render: true,
-      articles: props.articles
     }
   }
 
@@ -35,36 +34,25 @@ class HomeScreen extends React.Component {
   };
 
   fetchData = () => {
-    const data = this.props.listArticles();
-    console.log(111, data);
-    // this.setState(data)
+    this.props.listArticles();
   }
 
   render() {
-    console.log(1111111111);
-    const data = this.fetchData();
-    // console.log(222, data)
+    this.fetchData();
     return (
       <View style={{ flex: 1 }}>
         <NavigationEvents
           onWillFocus={payload => {
             if (payload.action.type === 'Navigation/BACK') {
-              this.setState(
-                {
-                  // render: !this.state.render,
-                  articles: this.props.articles
-                }
-              );
+              this.setState({ render: !this.state.render, });
             }
           }}
         />
 
-        {/* <FlatList  */}
-
         <FlatList
-          data={this.state.articles}
+          data={this.props.articles}
           legacyImplementation={true}
-          // extraData={this.state.articles}
+          // extraData={this.props.articles}
           renderItem={({ item }) => {
             return (
               <View style={{

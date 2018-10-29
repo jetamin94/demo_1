@@ -11,6 +11,11 @@ import { connect } from 'react-redux';
 import { LIST_ARTICLES } from '../actions';
 
 class HomeScreen extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
     return {
@@ -19,7 +24,7 @@ class HomeScreen extends React.Component {
         <Button
           // onPress={() => navigation.navigate('Details')}
           onPress={() => navigation.navigate('Modal')}
-          title="New Article"
+          title="New Article Test"
           color="#fff"
         />
       )
@@ -35,6 +40,7 @@ class HomeScreen extends React.Component {
   // }
 
   render() {
+    console.log('props home screen=======', this.props.articles);
     return (
       <View style={{ flex: 1 }}>
         <FlatList

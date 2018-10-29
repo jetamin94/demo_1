@@ -7,18 +7,35 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { ADD_ARTICLE } from '../actions';
+import { addArticle } from '../redux/actions'
 
 class ModalScreen extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+      content: ''
+    }
+  }
+
   static navigationOptions = {
     title: 'New Article',
   };
 
-  state = {
-    title: '',
-    content: ''
+  addData = () => {
+    data = {
+      title: this.state.title,
+      content: this.state.content
+    };
+    let dataArticles = this.props.articles;
+    dataArticles.push(data);
+    this.props.addArticle(dataArticles);
+    this.props.navigation.goBack();
   }
 
   render() {
+    console.log('props modal', this.props);
     return (
       <View style={{
         flex: 1,
@@ -43,10 +60,11 @@ class ModalScreen extends React.Component {
 
         <Button
           title="Create"
-          onPress={() => this.props.addArticle({
-            title: this.state.title,
-            content: this.state.content
-          })}
+          // onPress={() => this.props.addArticle({
+          //   title: this.state.title,
+          //   content: this.state.content
+          // })}
+          onPress={() => this.addData()}
         />
       </View>
     );
@@ -61,7 +79,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addArticle: data => dispatch({ type: ADD_ARTICLE, data }),
+    addArticle: data => dispatch(addArticle(data)),
   }
 }
 

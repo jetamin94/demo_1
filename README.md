@@ -13,3 +13,5 @@ npm install -g react-native-cli
 Before run the compiler, you might need to change `Project setting` from to `Legacy Build` instead of the `New build` in new Xcode versions.
 
 then simply run `react-native run-ios`
+
+The Project is working in progress...

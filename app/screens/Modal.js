@@ -32,12 +32,9 @@ class ModalScreen extends React.Component {
     dataArticles.push(data);
     this.props.addArticle(dataArticles);
     this.props.navigation.goBack();
-    console.log('log state redux', this.props.articles);
-    // this.props.
   }
 
   render() {
-    console.log('props modal', this.props);
     return (
       <View style={{
         flex: 1,
@@ -70,7 +67,6 @@ class ModalScreen extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('Map state to props ', state);
   return {
     articles: state.articlesState.articles
   }

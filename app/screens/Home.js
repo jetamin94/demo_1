@@ -15,7 +15,6 @@ class HomeScreen extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log('constructor home screen ==============>');
     this.state = {
       a: 0,
       render: true,
@@ -29,7 +28,6 @@ class HomeScreen extends React.Component {
       title: 'Home',
       headerRight: (
         <Button
-          // onPress={() => navigation.navigate('Details')}
           onPress={() => navigation.navigate('Modal')}
           title="New Article Test"
           color="#fff"
@@ -38,33 +36,14 @@ class HomeScreen extends React.Component {
     };
   };
 
-  // componentWillMount() {
-  //   this.listArticle();
-  // }
-
-  // fetchData = () => {
-  //   this.state.articles = this.articles
-  // }
-
   render() {
-    console.log('props home screen=======', this.state);
     return (
       <View style={{ flex: 1 }}>
         <NavigationEvents
           onWillFocus={payload => {
-            // this.setState(
-            //   {
-            //     render: !this.state.render
-            //   }
-            // );
-            // alert('Nguyen Tuan Anh');
-            console.log('Payload', payload);
             if (payload.action.type === 'Navigation/BACK') {
-              console.log('111111111');
-              console.log('1111111112222', this.props.articles);
               this.setState(
                 {
-                  a: Math.random(),
                   render: !this.state.render,
                   articles: this.props.articles
                 }
@@ -74,13 +53,12 @@ class HomeScreen extends React.Component {
         />
 
         {/* <FlatList  */}
-        
+
         <FlatList
           data={this.state.articles}
           legacyImplementation={true}
           // extraData={this.state.articles}
           renderItem={({ item }) => {
-            console.log('check render flatlist', this.state.articles);
             return (
               <View style={{
                 flex: 1,

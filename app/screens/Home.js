@@ -65,7 +65,7 @@ class HomeScreen extends React.Component {
                   style={styles.item}
                   onPress={() => {
                     const title = item.title;
-                    this.props.navigation.navigate('Details', {
+                    this.props.navigation.navigate('Detail', {
                       title,
                       otherParam: title,
                       content: item.content

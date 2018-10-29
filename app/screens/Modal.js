@@ -33,6 +33,7 @@ class ModalScreen extends React.Component {
     this.props.addArticle(dataArticles);
     this.props.navigation.goBack();
     console.log('log state redux', this.props.articles);
+    // this.props.
   }
 
   render() {

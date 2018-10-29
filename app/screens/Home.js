@@ -9,6 +9,7 @@ import {
 
 import { connect } from 'react-redux';
 import { LIST_ARTICLES } from '../actions';
+import { NavigationEvents } from 'react-navigation';
 
 class HomeScreen extends React.Component {
 
@@ -16,7 +17,9 @@ class HomeScreen extends React.Component {
     super(props);
     console.log('constructor home screen ==============>');
     this.state = {
-      articles: this.props.articles
+      a: 0,
+      render: true,
+      articles: props.articles
     }
   }
 
@@ -43,17 +46,41 @@ class HomeScreen extends React.Component {
   //   this.state.articles = this.articles
   // }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('1112312312312', nextProps);
-  }
-
   render() {
-    console.log('props home screen=======', this.props);
+    console.log('props home screen=======', this.state);
     return (
       <View style={{ flex: 1 }}>
+        <NavigationEvents
+          onWillFocus={payload => {
+            // this.setState(
+            //   {
+            //     render: !this.state.render
+            //   }
+            // );
+            // alert('Nguyen Tuan Anh');
+            console.log('Payload', payload);
+            if (payload.action.type === 'Navigation/BACK') {
+              console.log('111111111');
+              console.log('1111111112222', this.props.articles);
+              this.setState(
+                {
+                  a: Math.random(),
+                  render: !this.state.render,
+                  articles: this.props.articles
+                }
+              );
+            }
+          }}
+        />
+
+        {/* <FlatList  */}
+        
         <FlatList
           data={this.state.articles}
+          legacyImplementation={true}
+          // extraData={this.state.articles}
           renderItem={({ item }) => {
+            console.log('check render flatlist', this.state.articles);
             return (
               <View style={{
                 flex: 1,
@@ -115,4 +142,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+export default connect(mapStateToProps)(HomeScreen)

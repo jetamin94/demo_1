@@ -8,9 +8,6 @@ export default MainStack = createStackNavigator(
     Home: {
       screen: HomeScreen,
     },
-    Details: {
-      screen: DetailScreen,
-    },
     Modal: {
       screen: ModalScreen,
     },
@@ -28,18 +25,3 @@ export default MainStack = createStackNavigator(
     },
   }
 );
-
-// export default RootStack = createStackNavigator(
-//   {
-//     Main: {
-//       screen: MainStack,
-//     },
-//     MyModal: {
-//       screen: ModalScreen,
-//     },
-//   },
-//   {
-//     mode: 'modal',
-//     headerMode: 'none',
-//   }
-// );

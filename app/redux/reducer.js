@@ -25,7 +25,7 @@ const initialState = {
 export default (state = initialState, actions) => {
     switch (actions.type) {
         case ADD_ARTICLE:
-            return { ...state, articles: actions.articles }
+            return { ...state, articles: actions.data }
         default:
             return {
                 ...state

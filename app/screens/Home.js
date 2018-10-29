@@ -14,6 +14,10 @@ class HomeScreen extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log('constructor home screen ==============>');
+    this.state = {
+      articles: this.props.articles
+    }
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -39,12 +43,16 @@ class HomeScreen extends React.Component {
   //   this.state.articles = this.articles
   // }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('1112312312312', nextProps);
+  }
+
   render() {
-    console.log('props home screen=======', this.props.articles);
+    console.log('props home screen=======', this.props);
     return (
       <View style={{ flex: 1 }}>
         <FlatList
-          data={this.props.articles}
+          data={this.state.articles}
           renderItem={({ item }) => {
             return (
               <View style={{
@@ -97,7 +105,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    articles: state.articles
+    articles: state.articlesState.articles
   }
 }
 

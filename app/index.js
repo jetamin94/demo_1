@@ -1,10 +1,13 @@
 import React from 'react';
-import RootStack from './screens';
+import RootStack from './router';
 
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import Reducer from './redux/reducer';
 
+const rootReducer = combineReducers({
+  articlesState: Reducer
+});
 // import {
 //   ADD_ARTICLE,
 //   UPDATE_ARITCLE,
@@ -55,7 +58,7 @@ import Reducer from './redux/reducer';
 //   return state
 // }
 
-const store = createStore(Reducer);
+const store = createStore(rootReducer);
 
 export default class App extends React.Component {
   render() {

@@ -32,6 +32,7 @@ class ModalScreen extends React.Component {
     dataArticles.push(data);
     this.props.addArticle(dataArticles);
     this.props.navigation.goBack();
+    console.log('log state redux', this.props.articles);
   }
 
   render() {
@@ -60,10 +61,6 @@ class ModalScreen extends React.Component {
 
         <Button
           title="Create"
-          // onPress={() => this.props.addArticle({
-          //   title: this.state.title,
-          //   content: this.state.content
-          // })}
           onPress={() => this.addData()}
         />
       </View>
@@ -72,8 +69,9 @@ class ModalScreen extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log('Map state to props ', state);
   return {
-    articles: state.articles
+    articles: state.articlesState.articles
   }
 }
 

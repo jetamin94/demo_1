@@ -1,7 +1,7 @@
 import { createStackNavigator } from 'react-navigation';
-import HomeScreen from './Home';
-import DetailScreen from './Detail';
-import ModalScreen from './Modal';
+import HomeScreen from '../screens/Home';
+import DetailScreen from '../screens/Detail';
+import ModalScreen from '../screens/Modal';
 
 export default MainStack = createStackNavigator(
   {

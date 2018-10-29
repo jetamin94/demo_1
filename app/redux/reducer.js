@@ -27,6 +27,8 @@ export default (state = initialState, actions) => {
         case ADD_ARTICLE:
             return { ...state, articles: actions.articles }
         default:
-            return state;
+            return {
+                ...state
+            };
     }
 }

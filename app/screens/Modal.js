@@ -6,7 +6,6 @@ import {
   TextInput
 } from 'react-native';
 import { connect } from 'react-redux';
-import { ADD_ARTICLE } from '../actions';
 import { addArticle } from '../redux/actions'
 
 class ModalScreen extends React.Component {
@@ -24,13 +23,11 @@ class ModalScreen extends React.Component {
   };
 
   addData = () => {
-    data = {
+    const data = {
       title: this.state.title,
       content: this.state.content
     };
-    let dataArticles = this.props.articles;
-    dataArticles.push(data);
-    this.props.addArticle(dataArticles);
+    this.props.addArticle(data);
     this.props.navigation.goBack();
   }
 

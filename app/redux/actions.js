@@ -1,8 +1,16 @@
-import { ADD_ARTICLE } from './types'
+import {
+  ADD_ARTICLE,
+  LIST_ARTICLES,
+  REMOVE_ARTICLE,
+  UPDATE_ARITCLE
+} from './types'
 
-export const addArticle = (data) => {
-  return {
-    type: ADD_ARTICLE,
-    data,
-  }
-};
+export const addArticle = (data) => ({
+  type: ADD_ARTICLE,
+  data,
+})
+
+
+export const listArticles = () => ({
+  type: LIST_ARTICLES
+})

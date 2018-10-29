@@ -8,15 +8,13 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { LIST_ARTICLES } from '../actions';
+import { listArticles } from '../redux/actions'
 import { NavigationEvents } from 'react-navigation';
 
 class HomeScreen extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      a: 0,
       render: true,
       articles: props.articles
     }
@@ -29,14 +27,23 @@ class HomeScreen extends React.Component {
       headerRight: (
         <Button
           onPress={() => navigation.navigate('Modal')}
-          title="New Article Test"
+          title="New Article"
           color="#fff"
         />
       )
     };
   };
 
+  fetchData = () => {
+    const data = this.props.listArticles();
+    console.log(111, data);
+    // this.setState(data)
+  }
+
   render() {
+    console.log(1111111111);
+    const data = this.fetchData();
+    // console.log(222, data)
     return (
       <View style={{ flex: 1 }}>
         <NavigationEvents
@@ -44,7 +51,7 @@ class HomeScreen extends React.Component {
             if (payload.action.type === 'Navigation/BACK') {
               this.setState(
                 {
-                  render: !this.state.render,
+                  // render: !this.state.render,
                   articles: this.props.articles
                 }
               );
@@ -116,8 +123,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    listArticle: () => dispatch({ type: LIST_ARTICLES }),
+    listArticles: () => dispatch(listArticles()),
   }
 }
 
-export default connect(mapStateToProps)(HomeScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+// export default connect(mapStateToProps)(HomeScreen)

@@ -6,7 +6,7 @@ import {
   TextInput
 } from 'react-native';
 
-import { removeArticle, updateArticle } from '../redux/reducer';
+import { removeArticle, updateArticles } from '../redux/actions';
 import { connect } from 'react-redux';
 
 class DetailScreen extends React.Component {
@@ -26,7 +26,18 @@ class DetailScreen extends React.Component {
     content: this.props.navigation.state.params ? this.props.navigation.state.params.content : ''
   }
 
+  updateData(data) {
+    this.props.updateArticles(data);
+    this.props.navigation.goBack();
+  }
+
+  removeData(key) {
+    this.props.removeArticle(key);
+    this.props.navigation.goBack();
+  }
+
   render() {
+    const { params } = this.props.navigation.state;
     return (
       <View style={{
         flex: 1,
@@ -50,26 +61,32 @@ class DetailScreen extends React.Component {
         />
         <Button
           title="Update"
-          onPress={() => this.props.updateArticle({
+          onPress={() => this.updateData({
+            key: params.key,
             title: this.state.title,
             content: this.state.content,
-            // key: this.state.key,
           })}
         />
         <Button
           title="Delete"
-          onPress={() => { }}
+          onPress={() => this.removeData(params.key)}
         />
       </View>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    updateArticle: () => dispatch(updateArticle()),
-    removeArticle: () => dispatch(removeArticle()),
+    articles: state.articlesState.articles
   }
 }
 
-export default connect(mapDispatchToProps)(DetailScreen)
+const mapDispatchToProps = dispatch => {
+  return {
+    updateArticles: data => dispatch(updateArticles(data)),
+    removeArticle: data => dispatch(removeArticle(data)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetailScreen)

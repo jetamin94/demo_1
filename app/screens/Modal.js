@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { addArticle } from '../redux/actions'
+import uuid from 'uuid';
 
 class ModalScreen extends React.Component {
 
@@ -24,6 +25,7 @@ class ModalScreen extends React.Component {
 
   addData = () => {
     const data = {
+      key: uuid.v5(), 
       title: this.state.title,
       content: this.state.content
     };

@@ -14,11 +14,14 @@ export const listArticles = () => ({
   type: LIST_ARTICLES
 })
 
-export const removeArticle = () => ({
-  type: REMOVE_ARTICLE,
-})
+export const removeArticle = (data) => {
+  return {
+    type: REMOVE_ARTICLE,
+    data
+  }
+}
 
-export const updateArticle = (data) => ({
+export const updateArticles = (data) => ({
   type: UPDATE_ARITCLE,
   data
 })

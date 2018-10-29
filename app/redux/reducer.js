@@ -5,18 +5,20 @@ import {
   UPDATE_ARITCLE
 } from './types'
 
-
 const initialState = {
   articles: [
     {
+      key: 1,
       title: 'Title 1',
       content: 'texttexttext'
     },
     {
+      key: 2,
       title: 'Title 2',
       content: 'texttexttext'
     },
     {
+      key: 3,
       title: 'Title 3',
       content: 'texttexttext'
     }
@@ -33,9 +35,17 @@ export default (state = initialState, actions) => {
         }
       }
     case UPDATE_ARITCLE:
-      return { ...state, articles: actions.data }
+      {
+        const objIndex = state.articles.findIndex((obj => obj.key === actions.data.key));
+        state.articles[objIndex].title = actions.data.title;
+        state.articles[objIndex].content = actions.data.content;
+        return { ...state }
+      }
     case REMOVE_ARTICLE:
-      return { ...state, articles: actions.data }
+      {
+        state.articles = state.articles.filter(e => e.key !== actions.data)
+        return { ...state }
+      }
     case LIST_ARTICLES:
       return { articles: state.articles }
     default:
